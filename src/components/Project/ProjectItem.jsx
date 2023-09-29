@@ -2,7 +2,6 @@ import { NavLink } from "react-router-dom";
 import "../../style/ProjectListPage.css";
 
 function ProjectItem({ item }) {
-  console.log(item);
   return (
     <NavLink to={`/project/${item?.id}`} className="project__item">
       <span>{item?.title}</span>

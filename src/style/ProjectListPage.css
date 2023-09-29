@@ -29,10 +29,45 @@
   justify-content: center;
   background-color: #091e420f;
   color: #172b4d;
+  position: relative;
 }
 .create span {
   transform: translateY(-10px);
 }
 .create img {
   width: 20px;
+}
+.project__item.create__modal {
+  display: flex;
+  margin-right: 0;
+  flex-direction: column;
+  align-items: center;
+  background-color: #091e420f;
+  color: #172b4d;
+  position: relative;
+}
+.project__item.create__modal input {
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 16px;
+  border: 0px solid black;
+  background-color: #fff;
+  margin-bottom: 10px;
+}
+.project__item.create__modal button {
+  background-color: #0c66e4;
+  align-self: flex-start;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  padding: 8px 14px;
+  cursor: pointer;
+}
+.project__item.create__modal img {
+  cursor: pointer;
+  position: absolute;
+  width: 20px;
+  bottom: 20px;
+  right: 10px;
 }
