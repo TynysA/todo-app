@@ -3,14 +3,14 @@ import close from "../../assets/close.png";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useRef, useState } from "react";
-function TaskModal({ isOpen, onClose, item }) {
+function TaskModal({ isOpen, onClose, item, itemTitle }) {
   const dispatch = useDispatch();
   const { id } = useParams();
   const [subTaskAdd, setSubTaskAdd] = useState(false);
   //const list = useSelector((state) => state.list);
   const inputSubtaskRef = useRef("");
   if (!isOpen) return null;
-
+  console.log(item);
   const time = (item.dateEnd - item.dateCreate) / (1000 * 60 * 60 * 24);
   let timeText = ``;
   if (time > 0) {
@@ -42,7 +42,6 @@ function TaskModal({ isOpen, onClose, item }) {
       return;
     }
     const title = inputSubtaskRef.current.value;
-    console.log(title);
     const listid = id;
     const cardid = item.id;
     const cardstatus = item.status;
@@ -53,7 +52,7 @@ function TaskModal({ isOpen, onClose, item }) {
     };
     dispatch({
       type: "ADD_SUBTASK",
-      payload: { listid, cardstatus, cardid, newsabtask},
+      payload: { listid, cardstatus, cardid, newsabtask },
     });
     setSubTaskAdd(false);
   };
@@ -71,7 +70,7 @@ function TaskModal({ isOpen, onClose, item }) {
           <div className="modal__title">{item.title}</div>
           <div className="modal__subtitle">
             в колонке{" "}
-            {item.status.charAt(0).toUpperCase() + item.status.slice(1)}
+            {itemTitle.charAt(0).toUpperCase() + itemTitle.slice(1)}
           </div>
           {item.dateEnd === null ? null : (
             <div className="modal__date">

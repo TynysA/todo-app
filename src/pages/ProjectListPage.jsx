@@ -7,13 +7,24 @@ function ProjectListPage() {
   const dispatch = useDispatch();
   const list = useSelector((state) => state.list);
   const handeleAddProject = () => {
-    const newCards = {
-      queue: [],
-      development: [],
-      done: [],
-    };
+    const newCards = [
+      {
+        id: 1,
+        title: "queue",
+        info: [],
+      },
+      {
+        id: 2,
+        title: "development",
+        info: [],
+      },
+      {
+        id: 3,
+        title: "done",
+        info: [],
+      },
+    ];
     const ID = new Date().valueOf();
-    console.log(ID);
     const newProject = {
       id: ID,
       name: "Some list",

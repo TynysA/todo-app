@@ -5,39 +5,47 @@ import close from "../../assets/close.png";
 import TaskItem from "./TaskItem";
 import { useDispatch, useSelector } from "react-redux";
 import { useRef, useState } from "react";
-function TaskList({ info, title, onTaskClick }) {
+function TaskList({ card, title, onTaskClick }) {
   const { id } = useParams();
   const list = useSelector((state) => state.list);
   const dispatch = useDispatch();
   const inputRef = useRef("");
   const [open, setOpen] = useState(false);
-  const [currentBoard, setCurrentBoard] = useState(null);
-  const [currentItem, setCurrentItem] = useState(null);
-  const [infoList, setInfoList] = useState(info);
-  const dragOverHandler = (e) => {
+  const [currentBoard, setCurrentBoard] = useState();
+  const [currentItem, setCurrentItem] = useState();
+  const [infoList, setInfoList] = useState(card.info);
+  let current;
+  const dragOverHandler = (e, card, item) => {
     e.preventDefault();
     if (e.target.className === "task__item") {
       e.target.style.boxShadow = "0 4px 3px gray";
+      // setCurrentBoard(card);
+      // setCurrentItem(item);
     }
   };
   const dragLeaveHandler = (e) => {
     e.target.style.boxShadow = "none";
     e.target.style.boxShadow = "0px 1px 1px #091e4240, 0px 0px 1px #091e424f";
   };
-  const dragStartHandler = (e, info, item) => {
-    setCurrentBoard(info);
+  function dragStartHandler(e, card, item) {
+    // console.log(e.target);
+    // console.log(card);
+    // console.log(item);
+    setCurrentBoard(card);
     setCurrentItem(item);
-  };
+  }
   const dragEndHandler = (e) => {
     e.target.style.boxShadow = "none";
     e.target.style.boxShadow = "0px 1px 1px #091e4240, 0px 0px 1px #091e424f";
   };
-  const dropHandler = (e, info, item) => {
+  const dropHandler = (e, card, item) => {
     e.preventDefault();
+
     console.log(e.target);
-    console.log(info);
     console.log(item);
-    // const currentIndex = currentBoard.indexOf(currentItem);
+    console.log(current);
+    const currentIndex = card.info.indexOf(item);
+    console.log(currentIndex);
     // currentBoard.splice(currentIndex, 1);
     // const dropindex = infoList.indexOf(item);
     // infoList.splice(dropindex + 1, 0, currentItem);
@@ -51,6 +59,7 @@ function TaskList({ info, title, onTaskClick }) {
     //     }
     //   })
     // );
+    // console.log(infoList);
   };
 
   const handeleAddTask = () => {
@@ -106,18 +115,18 @@ function TaskList({ info, title, onTaskClick }) {
         {title.charAt(0).toUpperCase() + title.slice(1)}
       </div>
       <div className="tasks">
-        {info?.map((item) => (
+        {card.info?.map((item) => (
           // <TaskItem
           //   onTaskClick={onTaskClick}
           //   key={item.id}
           //   item={item}
           // ></TaskItem>
           <div
-            onDragOver={(e) => dragOverHandler(e)}
+            onDragOver={(e) => dragOverHandler(e, card, item)}
             onDragLeave={(e) => dragLeaveHandler(e)}
-            onDragStart={(e) => dragStartHandler(e, info, item)}
+            onDragStart={(e) => dragStartHandler(e, card, item)}
             onDragEnd={(e) => dragEndHandler(e)}
-            onDrop={(e) => dropHandler(e, info, item)}
+            onDrop={(e) => dropHandler(e, card, item)}
             draggable={true}
             className="task__item"
             onClick={() => onTaskClick(item)}
