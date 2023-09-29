@@ -70,6 +70,7 @@ function TaskFooter({ card, info }) {
       type: "ADD_CARD",
       payload: { list_id, card_id, newCard },
     });
+    setNewOpen(false);
   }
   function handeleOpen() {
     setNewOpen(true);

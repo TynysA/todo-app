@@ -147,19 +147,28 @@ const list = [
     board: "board-1",
   },
 ];
-
+const local__list = await localStorage.getItem("list");
+let resultArray = list;
+if (local__list) {
+  resultArray = JSON.parse(local__list);
+}
 const defaultState = {
-  list: list,
+  list: local__list ? resultArray : list,
 };
 
 const reducer = (state = defaultState, action) => {
   switch (action.type) {
     case "ADD_PROJECT":
+      localStorage.setItem(
+        "list",
+        JSON.stringify([...state.list, action.payload])
+      );
       return {
         ...state,
         list: [...state.list, action.payload], // Add the new project to the array
       };
     case "UPDATE_LIST":
+      localStorage.setItem("list", JSON.stringify(action.payload));
       return { ...state, list: action.payload };
     case "ADD_CARD":
       const { list_id, card_id, newCard } = action.payload;
@@ -168,6 +177,7 @@ const reducer = (state = defaultState, action) => {
       );
       const new_List = [...state.list];
       new_List[found_Index].cards[Number(card_id - 1)].info.push(newCard);
+      localStorage.setItem("list", JSON.stringify(new_List));
       return { ...state, list: new_List };
     case "UPDATE_SUBTASK_STATUS":
       const { listId, cardStatus, cardId, subtaskId, status } = action.payload;
@@ -201,6 +211,7 @@ const reducer = (state = defaultState, action) => {
           subtask.done = status;
         }
       }
+      localStorage.setItem("list", JSON.stringify(updatedList));
       return { ...state, list: updatedList };
     case "ADD_SUBTASK":
       const { listid, cardstatus, cardid, newsabtask } = action.payload;
@@ -226,6 +237,7 @@ const reducer = (state = defaultState, action) => {
           card.subcards.push(newsabtask);
         }
       }
+      localStorage.setItem("list", JSON.stringify(newList));
       return { ...state, list: newList };
     case "DragAndDropCard":
       return { ...state, isLoggedIn: true };
