@@ -1,0 +1,131 @@
+.project__container {
+  display: flex;
+  margin-top: 20px;
+  justify-content: space-between;
+}
+.project__tasks {
+  width: 33%;
+  background-color: rgb(241, 242, 244);
+  padding: 8px 15px;
+  height: fit-content;
+  position: relative;
+  margin: 0 2% 0 0;
+}
+.tasks__title {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+}
+.add__task {
+  margin-top: 10px;
+  color: #44546f;
+  padding: 8px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s linear;
+  display: flex;
+  align-items: center;
+}
+.add__task img {
+  width: 15px;
+  margin-right: 10px;
+}
+.add__task:hover {
+  background-color: #091e4224;
+}
+.tasks {
+  display: flex;
+  flex-direction: column;
+}
+.task__item {
+  cursor: pointer;
+  overflow: hidden;
+  padding: 12px 8px 12px 8px;
+  position: relative;
+  z-index: 10;
+  border-radius: 5px;
+  margin-top: 10px;
+  background-color: #fff;
+  box-shadow: 0px 1px 1px #091e4240, 0px 0px 1px #091e424f;
+  color: #172b4d;
+  transition: 0.2s linear;
+}
+.task__item:hover {
+  background-color: rgb(241, 242, 244);
+}
+.add__task_modal {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: -60px;
+  padding: 12px 8px 20px 8px;
+  border-radius: 5px;
+  background-color: rgb(241, 242, 244);
+  box-shadow: 0px 1px 1px #091e4240, 0px 0px 1px #091e424f;
+  color: #172b4d;
+}
+.add__task_modal input {
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 16px;
+  border: 0px solid black;
+  background-color: #fff;
+  margin-bottom: 10px;
+}
+.add__task_modal button {
+  background-color: #0c66e4;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  padding: 8px 14px;
+  cursor: pointer;
+}
+.task_modal__close {
+  cursor: pointer;
+  position: absolute;
+  width: 20px;
+  bottom: 26px;
+  right: 20px;
+}
+
+.add__subtask {
+  position: relative;
+}
+.add__subtask_modal {
+  position: absolute;
+  width: 150%;
+  left: -70px;
+  bottom: -100px;
+  z-index: 15;
+  padding: 6px 8px 10px 8px;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0px 1px 1px #091e4240, 0px 0px 1px #091e424f;
+  color: #172b4d;
+}
+.add__subtask_modal input {
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 16px;
+  border: 0px solid black;
+  background-color: #fff;
+  margin-bottom: 10px;
+}
+.add__subtask_modal button {
+  background-color: #0c66e4;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  padding: 8px 14px;
+  cursor: pointer;
+}
+.add__subtask_modal img {
+  cursor: pointer;
+  position: absolute;
+  width: 20px;
+  bottom: 18px;
+  z-index: 100;
+  right: 20px;
+}
